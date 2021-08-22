@@ -69,7 +69,7 @@ public class UserInterface {
             path = cd + path;
             operatedFile = new OperatedFile(path);
         }
-        System.out.println("Начать копирование файла \""+operatedFile.getName()+"\"? (Y/N)");
+        System.out.println("Начать копирование файла/папки \""+operatedFile.getName()+"\"? (Y/N)");
         answer = in.nextLine();
         if (answer.equalsIgnoreCase("y")) {
             OperatedFile finalOperatedFile = operatedFile;
@@ -85,7 +85,7 @@ public class UserInterface {
                             System.out.println("Файл \"" + finalOperatedFile.getName() + "\" успешно скопирован. Название нового файла: \"" + copyFile.getName() + "\"");
                         else
                             System.out.println("Папка \"" + finalOperatedFile.getName() + "\" успешно скопирована. Название новой папки: \"" + copyFile.getName() + "\"");
-                        if (!copyFile.exists()) System.out.println("Ошибка! Скопированный файл/папка не найден");
+                        if (!copyFile.exists()) System.out.println("Ошибка! Скопированный файл/папка не найдены");
                     } catch (NoSuchFileException e) {
                         System.out.println("Файл \"" + finalOperatedFile.getName() + "\" не найден");
                     } catch (InvalidPathException e) {
