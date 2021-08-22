@@ -6,33 +6,10 @@ import java.nio.file.*;
 import java.util.Scanner;
 
 public class OperatedFile extends File {
-/*    private String path;
-    private File file;*/
 
     public OperatedFile(String path) {
         super(path);
     }
-
-    /*public OperatedFile(File file) {
-        this.file = file;
-        this.path = file.getPath();
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }*/
 
     public String copy() throws NoSuchFileException {
         return copyInner("");

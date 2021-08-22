@@ -46,7 +46,7 @@ public class UserInterface {
         System.out.println("Список доступных команд");
         System.out.println("help     \t\t\t\tПосмотреть список доступных команд");
         System.out.println("copy     \t\t\t\tОткрыть меню копирования");
-        System.out.println("cd       \t\t\t\tУстановить каталог по умолчанию, в котором нужно искать файлы и папки для копирования");
+        System.out.println("cd       \t\t\t\tУстановить каталог по умолчанию, в котором нужно искать файлы и папки для копирования (если не задан можно использовать полный путь до файлов и папок)");
         System.out.println("get cd   \t\t\t\tПосмотреть каталог по умолчанию");
         System.out.println("to cd    \t\t\t\tУстановить каталог для новых файлов/папок (если не задан, то новые файлы и папки создаются рядом с исходными)");
         System.out.println("get to cd\t\t\t\tПосмотреть каталог для новых файлов/папок");
@@ -58,8 +58,8 @@ public class UserInterface {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите путь до папки или файла, который хотите копировать:");
         path = in.nextLine();
-        if (path == "")
-            while (path == "") {
+        if (path.equals(""))
+            while (path.equals("")) {
                 System.out.println("Введите непустой путь до файла:");
                 path = in.nextLine();
             }
@@ -97,8 +97,8 @@ public class UserInterface {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите путь до каталога по умолчанию, в котором нужно искать файлы и папки для копирования:");
         cd = in.nextLine();
-        if (cd == "")
-            while (cd == "") {
+        if (cd.equals(""))
+            while (cd.equals("")) {
                 System.out.println("Введите непустой путь до каталога:");
                 cd = in.nextLine();
             }
@@ -115,7 +115,7 @@ public class UserInterface {
 
     private static void getCD() {
         System.out.print("Текущий каталог по умолчанию: ");
-        if (cd == "") System.out.println("<отсутствует>");
+        if (cd.equals("")) System.out.println("<отсутствует>");
         else System.out.println(cd);
     }
 
@@ -123,8 +123,8 @@ public class UserInterface {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите путь до каталога для новых файлов:");
         toCD = in.nextLine();
-        if (toCD == "")
-            while (toCD == "") {
+        if (toCD.equals(""))
+            while (toCD.equals("")) {
                 System.out.println("Введите непустой путь до каталога:");
                 toCD = in.nextLine();
             }
@@ -141,7 +141,7 @@ public class UserInterface {
 
     private static void getToCD() {
         System.out.print("Текущий каталог для новых файлов: ");
-        if (toCD == "") System.out.println("<отсутствует>");
+        if (toCD.equals("")) System.out.println("<отсутствует>");
         else System.out.println(toCD);
     }
 }
