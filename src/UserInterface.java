@@ -55,6 +55,7 @@ public class UserInterface {
 
     private static void copy() {
         String path = "";
+        String answer= "";
         Scanner in = new Scanner(System.in);
         System.out.println("Введите путь до папки или файла, который хотите копировать:");
         path = in.nextLine();
@@ -68,29 +69,32 @@ public class UserInterface {
             path = cd + path;
             operatedFile = new OperatedFile(path);
         }
-        OperatedFile finalOperatedFile = operatedFile;
-        new Thread() {
-            @Override
-            public void run() {
-                String copyPath;
-                try {
-                    //System.out.println("Копирование запущено");
-                    copyPath = (toCD.equals("")) ? finalOperatedFile.copy() : finalOperatedFile.copy(toCD);
-                    File copyFile = new File(copyPath);
-                    if (finalOperatedFile.isFile())
-                        System.out.println("Файл \"" + finalOperatedFile.getName() + "\" успешно скопирован. Название нового файла: \"" + copyFile.getName()+"\"");
-                    else
-                        System.out.println("Папка \"" + finalOperatedFile.getName() + "\" успешно скопирована. Название новой папки: \"" + copyFile.getName()+"\"");
-                    if (!copyFile.exists()) System.out.println("Ошибка! Скопированный файл/папка не найден");
-                } catch (NoSuchFileException e) {
-                    System.out.println("Файл \"" + finalOperatedFile.getName() + "\" не найден");
+        System.out.println("Начать копирование файла \""+operatedFile.getName()+"\"? (Y/N)");
+        answer = in.nextLine();
+        if (answer.equalsIgnoreCase("y")) {
+            OperatedFile finalOperatedFile = operatedFile;
+            new Thread() {
+                @Override
+                public void run() {
+                    String copyPath;
+                    try {
+                        //System.out.println("Копирование запущено");
+                        copyPath = (toCD.equals("")) ? finalOperatedFile.copy() : finalOperatedFile.copy(toCD);
+                        File copyFile = new File(copyPath);
+                        if (finalOperatedFile.isFile())
+                            System.out.println("Файл \"" + finalOperatedFile.getName() + "\" успешно скопирован. Название нового файла: \"" + copyFile.getName() + "\"");
+                        else
+                            System.out.println("Папка \"" + finalOperatedFile.getName() + "\" успешно скопирована. Название новой папки: \"" + copyFile.getName() + "\"");
+                        if (!copyFile.exists()) System.out.println("Ошибка! Скопированный файл/папка не найден");
+                    } catch (NoSuchFileException e) {
+                        System.out.println("Файл \"" + finalOperatedFile.getName() + "\" не найден");
+                    } catch (InvalidPathException e) {
+                        System.out.println("Некорректный путь до файла");
+                    }
                 }
-                catch (InvalidPathException e)
-                {
-                    System.out.println("Некорректный путь до файла");
-                }
-            }
-        }.start();
+            }.start();
+        }
+        else System.out.println("Копирование отменено");
     }
 
     private static void setCD() {
